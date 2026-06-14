@@ -10,7 +10,25 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export const Route = createFileRoute("/_authenticated/admin")({
-  head: () => ({ meta: [{ title: "Admin — Kabir.io" }] }),
+  head: () => ({
+    meta: [
+      { title: "Admin — Kabir.io" },
+      {
+        name: "description",
+        content:
+          "Kabir.io admin console for reviewing pending sign-ups, approving members, and managing user access across the platform.",
+      },
+      { property: "og:title", content: "Admin — Kabir.io" },
+      {
+        property: "og:description",
+        content:
+          "Kabir.io admin console for reviewing pending sign-ups, approving members, and managing user access.",
+      },
+      { property: "og:url", content: "https://academicio.lovable.app/admin" },
+      { name: "robots", content: "noindex,nofollow" },
+    ],
+    links: [{ rel: "canonical", href: "https://academicio.lovable.app/admin" }],
+  }),
   component: AdminPage,
 });
 
