@@ -66,8 +66,29 @@ export const Route = createFileRoute("/_authenticated/courses/$courseId")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:url", content: url },
+        { property: "og:type", content: "article" },
       ],
       links: [{ rel: "canonical", href: url }],
+      scripts: course
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Course",
+                name: course.title,
+                description: desc,
+                ...(course.code ? { courseCode: course.code } : {}),
+                url,
+                provider: {
+                  "@type": "EducationalOrganization",
+                  name: "Kabir.io",
+                  url: "https://academicio.lovable.app",
+                },
+              }),
+            },
+          ]
+        : undefined,
     };
   },
   component: CoursePage,

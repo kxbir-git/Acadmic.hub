@@ -1,0 +1,9 @@
+# Kabir.io
+
+> Secure academic notes and notification hub for Integral University students and faculty — notes, images, links, and announcements organised by course.
+
+## Pages
+
+- [Home](/): Landing page that redirects signed-in users to their dashboard.
+
+Course materials, dashboards, and admin tools are behind authentication and are not listed here.
