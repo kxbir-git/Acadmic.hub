@@ -543,26 +543,33 @@ function LinksTab({ courseId, isAdmin }: { courseId: string; isAdmin: boolean })
       ) : (
         <div className="grid gap-3">
           {links!.map((l) => (
-            <a
-              key={l.id}
-              href={l.url}
-              target="_blank"
-              rel="noreferrer"
-              className="glass flex items-center gap-4 rounded-xl p-4 transition hover:bg-white/10"
-            >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/20 text-accent">
-                <LinkIcon className="h-5 w-5" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <div className="font-medium truncate">{l.title}</div>
-                  {l.category && <Badge variant="secondary" className="bg-white/10">{l.category}</Badge>}
+            <div key={l.id} className="glass flex items-center gap-4 rounded-xl p-4 transition hover:bg-white/10">
+              <a href={l.url} target="_blank" rel="noreferrer" className="flex flex-1 items-center gap-4 min-w-0">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/20 text-accent">
+                  <LinkIcon className="h-5 w-5" />
                 </div>
-                {l.description && <div className="text-xs text-muted-foreground truncate">{l.description}</div>}
-                <div className="text-[11px] text-muted-foreground truncate">{l.url}</div>
-              </div>
-              <ExternalLink className="h-4 w-4 text-muted-foreground" />
-            </a>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <div className="font-medium truncate">{l.title}</div>
+                    {l.category && <Badge variant="secondary" className="bg-white/10">{l.category}</Badge>}
+                  </div>
+                  {l.description && <div className="text-xs text-muted-foreground truncate">{l.description}</div>}
+                  <div className="text-[11px] text-muted-foreground truncate">{l.url}</div>
+                </div>
+                <ExternalLink className="h-4 w-4 text-muted-foreground" />
+              </a>
+              {isAdmin && (
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="h-8 w-8 border-destructive/30 bg-destructive/10 text-destructive hover:bg-destructive/20"
+                  onClick={() => { if (confirm(`Delete "${l.title}"?`)) remove.mutate(l.id); }}
+                  aria-label="Delete link"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                </Button>
+              )}
+            </div>
           ))}
         </div>
       )}
