@@ -70,6 +70,11 @@ export function AppHeader({ user }: { user: CurrentUser | null }) {
               </Button>
             </>
           )}
+          {!user && (
+            <Button variant="outline" size="sm" onClick={signIn} className="gap-1.5">
+              <LogIn className="h-3.5 w-3.5" /> Admin sign in
+            </Button>
+          )}
         </div>
       </div>
     </header>
