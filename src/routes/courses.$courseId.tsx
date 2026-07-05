@@ -41,6 +41,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { PublicShell } from "@/components/PublicShell";
 
 export const Route = createFileRoute("/courses/$courseId")({
   ssr: false,
@@ -116,16 +117,23 @@ function CoursePage() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center py-20">
-        <Loader2 className="h-6 w-6 animate-spin text-primary" />
-      </div>
+      <PublicShell>
+        <div className="flex justify-center py-20">
+          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        </div>
+      </PublicShell>
     );
   }
   if (!course) {
-    return <div className="glass rounded-2xl p-10 text-center">Course not found.</div>;
+    return (
+      <PublicShell>
+        <div className="glass rounded-2xl p-10 text-center">Course not found.</div>
+      </PublicShell>
+    );
   }
 
   return (
+    <PublicShell>
     <div className="space-y-6">
       <Link
         to="/dashboard"
